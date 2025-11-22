@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>T.fly deDeejay</title>
+  <title>NLM Clothing - Official Store</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <style>
@@ -146,6 +146,27 @@
     
     nav a:hover::after {
       width: 100%;
+    }
+    
+    .cart-icon {
+      position: relative;
+      margin-left: 20px;
+    }
+    
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: var(--secondary);
+      color: white;
+      font-size: 0.7rem;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
     }
     
     /* Hero Section */
@@ -316,6 +337,287 @@
       height: 4px;
       background: var(--gradient);
       border-radius: 2px;
+    }
+    
+    /* Products Section */
+    .products-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .product-card {
+      background: var(--card-bg);
+      border-radius: 15px;
+      overflow: hidden;
+      transition: var(--transition);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+      position: relative;
+    }
+    
+    .product-card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(65, 105, 225, 0.2);
+    }
+    
+    .product-image-container {
+      position: relative;
+      overflow: hidden;
+      height: 350px;
+    }
+    
+    .product-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+    
+    .product-card:hover .product-image {
+      transform: scale(1.1);
+    }
+    
+    .product-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: var(--gradient);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+    
+    .product-info {
+      padding: 25px;
+      text-align: center;
+    }
+    
+    .product-name {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .product-name::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 3px;
+      background: var(--gradient);
+      border-radius: 2px;
+    }
+    
+    .product-description {
+      color: var(--light-text);
+      line-height: 1.7;
+      margin-bottom: 15px;
+    }
+    
+    .product-price {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--secondary);
+      margin-bottom: 15px;
+    }
+    
+    .product-actions {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    
+    .add-to-cart {
+      flex: 1;
+      padding: 12px;
+      background: var(--gradient);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .add-to-cart:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(255, 140, 0, 0.3);
+    }
+    
+    .view-details {
+      flex: 1;
+      padding: 12px;
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      border-radius: 5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .view-details:hover {
+      background: var(--accent);
+      color: white;
+      transform: translateY(-3px);
+    }
+    
+    /* Cart Sidebar */
+    .cart-sidebar {
+      position: fixed;
+      top: 0;
+      right: -400px;
+      width: 400px;
+      height: 100vh;
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border-left: 1px solid var(--border);
+      z-index: 2000;
+      transition: var(--transition);
+      padding: 30px;
+      overflow-y: auto;
+    }
+    
+    .cart-sidebar.active {
+      right: 0;
+    }
+    
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .close-cart {
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    
+    .cart-items {
+      margin-bottom: 30px;
+    }
+    
+    .cart-item {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .cart-item-image {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    
+    .cart-item-details {
+      flex: 1;
+    }
+    
+    .cart-item-name {
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    
+    .cart-item-price {
+      color: var(--secondary);
+      font-weight: 700;
+    }
+    
+    .cart-item-quantity {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    
+    .quantity-btn {
+      width: 25px;
+      height: 25px;
+      background: var(--gradient);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    
+    .remove-item {
+      color: var(--light-text);
+      background: none;
+      border: none;
+      cursor: pointer;
+      margin-left: auto;
+    }
+    
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+    
+    .checkout-btn {
+      width: 100%;
+      padding: 15px;
+      background: var(--gradient);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .checkout-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(255, 140, 0, 0.3);
+    }
+    
+    .cart-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 1999;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+    }
+    
+    .cart-overlay.active {
+      opacity: 1;
+      visibility: visible;
     }
     
     /* About Section */
@@ -512,181 +814,6 @@
       font-size: 0.9rem;
     }
     
-    /* Artists Section */
-    .artists-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
-      margin-top: 40px;
-    }
-    
-    .artist-card {
-      width: 280px;
-      background: var(--card-bg);
-      border-radius: 15px;
-      overflow: hidden;
-      transition: var(--transition);
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-      border: 1px solid var(--border);
-      backdrop-filter: blur(10px);
-      position: relative;
-    }
-    
-    .artist-card:hover {
-      transform: translateY(-10px) scale(1.03);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(65, 105, 225, 0.2);
-    }
-    
-    .artist-image-container {
-      position: relative;
-      overflow: hidden;
-      height: 350px;
-    }
-    
-    .artist-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: var(--transition);
-    }
-    
-    .artist-card:hover .artist-image {
-      transform: scale(1.1);
-    }
-    
-    .artist-social {
-      position: absolute;
-      bottom: 20px;
-      left: 0;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      opacity: 0;
-      transition: var(--transition);
-    }
-    
-    .artist-card:hover .artist-social {
-      opacity: 1;
-    }
-    
-    .artist-social a {
-      width: 40px;
-      height: 40px;
-      background: var(--gradient);
-      color: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: var(--transition);
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-    }
-    
-    .artist-social a:hover {
-      transform: translateY(-5px) scale(1.1);
-      box-shadow: 0 5px 15px rgba(255, 140, 0, 0.4);
-    }
-    
-    .artist-info {
-      padding: 25px;
-      text-align: center;
-    }
-    
-    .artist-name {
-      font-size: 1.5rem;
-      font-weight: 800;
-      margin-bottom: 10px;
-      text-transform: uppercase;
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      position: relative;
-      display: inline-block;
-    }
-    
-    .artist-name::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 40px;
-      height: 3px;
-      background: var(--gradient);
-      border-radius: 2px;
-    }
-    
-    .artist-bio {
-      color: var(--light-text);
-      line-height: 1.7;
-      margin-bottom: 15px;
-    }
-    
-    .artist-genre {
-      display: inline-block;
-      padding: 5px 15px;
-      background: rgba(65, 105, 225, 0.1);
-      color: var(--accent);
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      border: 1px solid rgba(65, 105, 225, 0.3);
-    }
-    
-    /* Releases Section */
-    .release-card {
-      max-width: 800px;
-      margin: 0 auto 40px;
-      background: var(--card-bg);
-      border-radius: 15px;
-      overflow: hidden;
-      display: flex;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-      transition: var(--transition);
-      border: 1px solid var(--border);
-      backdrop-filter: blur(10px);
-    }
-    
-    .release-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 140, 0, 0.2);
-    }
-    
-    .release-image {
-      width: 300px;
-      height: auto;
-      object-fit: cover;
-    }
-    
-    .release-info {
-      padding: 30px;
-      flex: 1;
-    }
-    
-    .release-title {
-      font-size: 1.8rem;
-      font-weight: 800;
-      margin-bottom: 20px;
-      text-transform: uppercase;
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    
-    .release-description {
-      color: var(--light-text);
-      margin-bottom: 20px;
-      line-height: 1.7;
-    }
-    
-    .release-links {
-      display: flex;
-      gap: 15px;
-      margin-top: 30px;
-    }
-    
     /* Footer */
     footer {
       background: rgba(10, 10, 10, 0.95);
@@ -781,15 +908,6 @@
     
     /* Responsive */
     @media (max-width: 992px) {
-      .release-card {
-        flex-direction: column;
-      }
-      
-      .release-image {
-        width: 100%;
-        height: 300px;
-      }
-      
       .hero-content {
         flex-direction: column;
         text-align: center;
@@ -797,6 +915,10 @@
       
       .hero-text {
         text-align: center;
+      }
+      
+      .cart-sidebar {
+        width: 350px;
       }
     }
     
@@ -840,6 +962,11 @@
       .nlm-family h2 {
         font-size: 2rem;
       }
+      
+      .cart-sidebar {
+        width: 100%;
+        right: -100%;
+      }
     }
     
     /* Floating elements animation */
@@ -861,59 +988,6 @@
     
     .page-content.active {
       display: block;
-    }
-    
-    /* Music Platforms Section */
-    .music-platforms {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      margin: 40px 0;
-      flex-wrap: wrap;
-    }
-    
-    .platform-card {
-      background: var(--card-bg);
-      border-radius: 15px;
-      padding: 25px;
-      text-align: center;
-      width: 200px;
-      transition: var(--transition);
-      border: 1px solid var(--border);
-      backdrop-filter: blur(10px);
-    }
-    
-    .platform-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-    }
-    
-    .platform-icon {
-      font-size: 40px;
-      margin-bottom: 15px;
-      color: var(--accent);
-    }
-    
-    .platform-name {
-      font-weight: 700;
-      margin-bottom: 10px;
-      color: var(--text);
-    }
-    
-    .platform-btn {
-      display: inline-block;
-      padding: 10px 20px;
-      background: var(--gradient);
-      color: white;
-      border-radius: 25px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      transition: var(--transition);
-    }
-    
-    .platform-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 5px 15px rgba(255, 140, 0, 0.3);
     }
     
     /* Contact Icons */
@@ -1018,19 +1092,44 @@
   <header>
     <div class="container header-container">
       <a href="#" class="logo" onclick="showPage('home')">
-        <img src="logo.png" alt="T.fly deDeejay">
-        <span>T.fly deDeejay</span>
+        <img src="logo.png" alt="NLM Clothing">
+        <span>NLM Clothing</span>
       </a>
       <nav>
         <ul>
           <li><a href="#" onclick="showPage('home')">Home</a></li>
-          <li><a href="#" onclick="showPage('music')">Music</a></li>
+          <li><a href="#" onclick="showPage('shop')">Shop</a></li>
           <li><a href="#" onclick="showPage('about')">About</a></li>
-          <li><a href="#" onclick="showPage('bookings')">Bookings</a></li>
+          <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+          <li class="cart-icon">
+            <a href="#" onclick="toggleCart()">
+              <i class="fas fa-shopping-cart"></i>
+              <span class="cart-count">0</span>
+            </a>
+          </li>
         </ul>
       </nav>
     </div>
   </header>
+
+  <!-- Cart Sidebar -->
+  <div class="cart-overlay" onclick="toggleCart()"></div>
+  <div class="cart-sidebar">
+    <div class="cart-header">
+      <h2>Your Cart</h2>
+      <button class="close-cart" onclick="toggleCart()">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="cart-items">
+      <!-- Cart items will be added dynamically -->
+    </div>
+    <div class="cart-total">
+      <span>Total:</span>
+      <span class="total-price">$0.00</span>
+    </div>
+    <button class="checkout-btn">Proceed to Checkout</button>
+  </div>
 
   <!-- Home Page -->
   <div id="home" class="page-content active">
@@ -1038,16 +1137,16 @@
       <div class="container">
         <div class="hero-content">
           <div class="hero-image floating">
-            <img src="1.jpg" alt="T.fly deDeejay">
+            <img src="1.jpg" alt="NLM Clothing">
           </div>
           <div class="hero-text">
-            <h1>T.fly deDeejay</h1>
+            <h1>NLM Clothing</h1>
             <p>
-            A dynamic DJ and producer specializing in Progressive House and Afro House, crafting hypnotic grooves that blend deep rhythms with soulful, dance-driven energy. His sound is a fusion of rich African influences and modern electronic production, designed to move both bodies and minds.
+              Official apparel for NLM Music Group Africa and all its affiliated brands. Wear the sound, feel the rhythm, represent the movement.
+            </p>
             <div>
-              <a href="#" class="btn btn-primary" onclick="showPage('bookings')">Bookings</a>
-              <a href="#" class="btn btn-outline" onclick="showPage('music')">Listen Now</a>
-              <a href="#" class="btn btn-outline" onclick="showPage('about')">About</a>
+              <a href="#" class="btn btn-primary" onclick="showPage('shop')">Shop Now</a>
+              <a href="#" class="btn btn-outline" onclick="showPage('about')">Our Story</a>
             </div>
           </div>
         </div>
@@ -1056,18 +1155,53 @@
 
     <section class="section">
       <div class="container">
-        <h2 class="section-title">Latest Release</h2>
+        <h2 class="section-title">Featured Products</h2>
         
-        <div class="release-card">
-          <img src="3.png" alt="From Street To The World EP" class="release-image">
-          <div class="release-info">
-            <h3 class="release-title">From Street To The World EP</h3>
-            <p class="release-description">
-             From The Street To The World is more than a title; its the mission statement for T.fly deDeejay's powerful new EP. This collection of tracks charts a course from the foundational, dusty rhythms of the street—where Afro House's percussive heartbeat reigns—to the vast, expansive horizons of the world stage, painted with the lush, melodic layers of Progressive House.
-            </p>
-            <div class="release-links">
-              <a href="https://www.mediafire.com/file/0hyerk0iaktw1lf/T.fly_deDeejay_-_From_Street_To_The_World_EP.zip/file" class="btn btn-primary" target="_blank">Download Album</a>
-              <a href="#" class="btn btn-outline" onclick="showPage('music')">More Music</a>
+        <div class="products-container">
+          <div class="product-card">
+            <div class="product-image-container">
+              <img src="tshirt1.jpg" alt="NLM Signature T-Shirt" class="product-image">
+              <div class="product-badge">New</div>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">NLM Signature T-Shirt</h3>
+              <p class="product-description">Premium cotton t-shirt with the iconic NLM Music Group Africa logo.</p>
+              <div class="product-price">$29.99</div>
+              <div class="product-actions">
+                <button class="add-to-cart" data-id="1" data-name="NLM Signature T-Shirt" data-price="29.99">Add to Cart</button>
+                <button class="view-details">Details</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="product-card">
+            <div class="product-image-container">
+              <img src="hoodie1.jpg" alt="NLM Hoodie" class="product-image">
+              <div class="product-badge">Bestseller</div>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">NLM Hoodie</h3>
+              <p class="product-description">Comfortable hoodie featuring the NLM Music Group Africa branding.</p>
+              <div class="product-price">$49.99</div>
+              <div class="product-actions">
+                <button class="add-to-cart" data-id="2" data-name="NLM Hoodie" data-price="49.99">Add to Cart</button>
+                <button class="view-details">Details</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="product-card">
+            <div class="product-image-container">
+              <img src="cap1.jpg" alt="NLM Cap" class="product-image">
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">NLM Cap</h3>
+              <p class="product-description">Stylish cap with embroidered NLM Music Group Africa logo.</p>
+              <div class="product-price">$24.99</div>
+              <div class="product-actions">
+                <button class="add-to-cart" data-id="3" data-name="NLM Cap" data-price="24.99">Add to Cart</button>
+                <button class="view-details">Details</button>
+              </div>
             </div>
           </div>
         </div>
@@ -1102,46 +1236,103 @@
     </section>
   </div>
 
-  <!-- Music Page -->
-  <div id="music" class="page-content">
+  <!-- Shop Page -->
+  <div id="shop" class="page-content">
     <section class="section">
       <div class="container">
-        <h2 class="section-title">Music</h2>
+        <h2 class="section-title">Shop All Products</h2>
         
-        <div class="music-platforms">
-          <div class="platform-card">
-            <i class="fab fa-spotify platform-icon"></i>
-            <h3 class="platform-name">Spotify</h3>
-            <a href="https://open.spotify.com/artist/0lVQM0Rn1zO4tqXeQlnSSA?si=ZwGVVzF8R3W61zIhj_28NA" class="platform-btn" target="_blank">Listen</a>
+        <div class="products-container">
+          <div class="product-card">
+            <div class="product-image-container">
+              <img src="tshirt1.jpg" alt="NLM Signature T-Shirt" class="product-image">
+              <div class="product-badge">New</div>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">NLM Signature T-Shirt</h3>
+              <p class="product-description">Premium cotton t-shirt with the iconic NLM Music Group Africa logo.</p>
+              <div class="product-price">$29.99</div>
+              <div class="product-actions">
+                <button class="add-to-cart" data-id="1" data-name="NLM Signature T-Shirt" data-price="29.99">Add to Cart</button>
+                <button class="view-details">Details</button>
+              </div>
+            </div>
           </div>
           
-          <div class="platform-card">
-            <i class="fab fa-apple platform-icon"></i>
-            <h3 class="platform-name">Apple Music</h3>
-            <a href="https://music.apple.com/us/artist/t-fly-dedeejay/1794476063" class="platform-btn" target="_blank">Listen</a>
+          <div class="product-card">
+            <div class="product-image-container">
+              <img src="hoodie1.jpg" alt="NLM Hoodie" class="product-image">
+              <div class="product-badge">Bestseller</div>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">NLM Hoodie</h3>
+              <p class="product-description">Comfortable hoodie featuring the NLM Music Group Africa branding.</p>
+              <div class="product-price">$49.99</div>
+              <div class="product-actions">
+                <button class="add-to-cart" data-id="2" data-name="NLM Hoodie" data-price="49.99">Add to Cart</button>
+                <button class="view-details">Details</button>
+              </div>
+            </div>
           </div>
           
-          <div class="platform-card">
-            <i class="fas fa-compact-disc platform-icon"></i>
-            <h3 class="platform-name">Beatport</h3>
-            <a href="To Be Confirmed" class="platform-btn" target="_blank">Listen</a>
+          <div class="product-card">
+            <div class="product-image-container">
+              <img src="cap1.jpg" alt="NLM Cap" class="product-image">
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">NLM Cap</h3>
+              <p class="product-description">Stylish cap with embroidered NLM Music Group Africa logo.</p>
+              <div class="product-price">$24.99</div>
+              <div class="product-actions">
+                <button class="add-to-cart" data-id="3" data-name="NLM Cap" data-price="24.99">Add to Cart</button>
+                <button class="view-details">Details</button>
+              </div>
+            </div>
           </div>
           
-          <div class="platform-card">
-            <i class="fas fa-music platform-icon"></i>
-            <h3 class="platform-name">Traxsource</h3>
-            <a href="https://www.traxsource.com/artist/972163/t-fly-dedeejay" class="platform-btn" target="_blank">Listen</a>
+          <div class="product-card">
+            <div class="product-image-container">
+              <img src="tshirt2.jpg" alt="T.fly deDeejay T-Shirt" class="product-image">
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">T.fly deDeejay T-Shirt</h3>
+              <p class="product-description">Official merchandise for T.fly deDeejay fans and supporters.</p>
+              <div class="product-price">$32.99</div>
+              <div class="product-actions">
+                <button class="add-to-cart" data-id="4" data-name="T.fly deDeejay T-Shirt" data-price="32.99">Add to Cart</button>
+                <button class="view-details">Details</button>
+              </div>
+            </div>
           </div>
-        </div>
-        
-        <div class="release-card">
-          <img src="3.png" alt="From The World To The World" class="release-image">
-          <div class="release-info">
-            <h3 class="release-title">From The World To The World</h3>
-            <p class="release-description">
-             A dynamic DJ and producer specializing in Progressive House and Afro House, crafting hypnotic grooves that blend deep rhythms with soulful, dance-driven energy. His sound is a fusion of rich African influences and modern electronic production, designed to move both bodies and minds
-            <div class="release-links">
-              <a href="https://www.mediafire.com/file/0hyerk0iaktw1lf/T.fly_deDeejay_-_From_Street_To_The_World_EP.zip/file" class="btn btn-primary" target="_blank">Download Album</a>
+          
+          <div class="product-card">
+            <div class="product-image-container">
+              <img src="jacket1.jpg" alt="NLM Denim Jacket" class="product-image">
+              <div class="product-badge">Limited</div>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">NLM Denim Jacket</h3>
+              <p class="product-description">Limited edition denim jacket with custom NLM embroidery.</p>
+              <div class="product-price">$79.99</div>
+              <div class="product-actions">
+                <button class="add-to-cart" data-id="5" data-name="NLM Denim Jacket" data-price="79.99">Add to Cart</button>
+                <button class="view-details">Details</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="product-card">
+            <div class="product-image-container">
+              <img src="beanie1.jpg" alt="NLM Beanie" class="product-image">
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">NLM Beanie</h3>
+              <p class="product-description">Warm and stylish beanie for the colder months.</p>
+              <div class="product-price">$19.99</div>
+              <div class="product-actions">
+                <button class="add-to-cart" data-id="6" data-name="NLM Beanie" data-price="19.99">Add to Cart</button>
+                <button class="view-details">Details</button>
+              </div>
             </div>
           </div>
         </div>
@@ -1153,13 +1344,13 @@
   <div id="about" class="page-content">
     <section class="section">
       <div class="container">
-        <h2 class="section-title">About</h2>
+        <h2 class="section-title">About NLM Clothing</h2>
         
         <div class="about-container">
           <div class="about-card floating">
-            <img src="1.jpg" alt="T.fly deDeejay">
-            <h3>T.fly deDeejay</h3>
-            <p>Genre-blending Electronic Artist</p>
+            <img src="1.jpg" alt="NLM Clothing">
+            <h3>NLM Clothing</h3>
+            <p>Official Apparel Brand</p>
           </div>
           
           <div class="about-card floating">
@@ -1172,21 +1363,21 @@
         <div style="max-width: 800px; margin: 60px auto 0; background: var(--card-bg); padding: 40px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); border: 1px solid var(--border);">
           <h3 style="text-align: center; margin-bottom: 20px; color: var(--accent);">Our Story</h3>
           <p style="color: var(--light-text); line-height: 1.8; text-align: center;">
-            T.fly deDeejay is a pioneering electronic music artist who fuses African rhythms with cutting-edge EDM production. Signed to NLM Music Group Africa, a label founded in 2025 by Ailwei Maduna Wa Malada in honor of his mother, Ntampose Lettia Maduna. Together, we're pushing the boundaries of African electronic music and bringing its unique sound to the global stage.
+            NLM Clothing is the official apparel brand of NLM Music Group Africa, founded in 2025 by Ailwei Maduna Wa Malada in honor of his mother, Ntampose Lettia Maduna. Our clothing line represents the fusion of African musical heritage with contemporary fashion, creating unique pieces that allow fans to wear their passion for music. Each item is designed with quality materials and attention to detail, reflecting the same dedication to excellence that defines NLM Music Group Africa.
           </p>
         </div>
       </div>
     </section>
   </div>
 
-  <!-- Bookings Page -->
-  <div id="bookings" class="page-content">
+  <!-- Contact Page -->
+  <div id="contact" class="page-content">
     <section class="section">
       <div class="container">
-        <h2 class="section-title">Bookings & Contact</h2>
+        <h2 class="section-title">Contact Us</h2>
         <div style="max-width: 600px; margin: 0 auto; text-align: center; background: var(--card-bg); padding: 40px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); border: 1px solid var(--border); backdrop-filter: blur(10px);">
           <p style="margin-bottom: 30px; color: var(--light-text);">
-            For bookings, collaborations, or general inquiries, reach out to us through any of these channels:
+            For orders, collaborations, or general inquiries, reach out to us through any of these channels:
           </p>
           
           <div class="contact-icons">
@@ -1220,9 +1411,9 @@
     <div class="container">
       <div class="footer-links">
         <a href="#" onclick="showPage('home')">Home</a>
-        <a href="#" onclick="showPage('music')">Music</a>
+        <a href="#" onclick="showPage('shop')">Shop</a>
         <a href="#" onclick="showPage('about')">About</a>
-        <a href="#" onclick="showPage('bookings')">Bookings</a>
+        <a href="#" onclick="showPage('contact')">Contact</a>
       </div>
       
       <div class="icon-only">
@@ -1234,12 +1425,17 @@
       </div>
       
       <p style="margin-top: 30px; color: var(--light-text); font-size: 0.8rem;">
-        &copy; 2025 T.fly deDeejay & NLM Music Group Africa. All rights reserved.
+        &copy; 2025 NLM Clothing & NLM Music Group Africa. All rights reserved.
       </p>
     </div>
   </footer>
 
   <script>
+    // Shopping cart functionality
+    let cart = [];
+    let cartCount = 0;
+    let cartTotal = 0;
+    
     // Function to show the selected page and hide others
     function showPage(pageId) {
       // Hide all pages
@@ -1285,7 +1481,100 @@
       floatingElements.forEach((el, index) => {
         el.style.animationDelay = `${index * 0.2}s`;
       });
+      
+      // Add event listeners to add to cart buttons
+      document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', function() {
+          const id = this.getAttribute('data-id');
+          const name = this.getAttribute('data-name');
+          const price = parseFloat(this.getAttribute('data-price'));
+          
+          addToCart(id, name, price);
+        });
+      });
     });
+    
+    // Cart functions
+    function addToCart(id, name, price) {
+      // Check if item already exists in cart
+      const existingItem = cart.find(item => item.id === id);
+      
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        cart.push({
+          id: id,
+          name: name,
+          price: price,
+          quantity: 1
+        });
+      }
+      
+      updateCart();
+      toggleCart(); // Open cart when item is added
+    }
+    
+    function removeFromCart(id) {
+      cart = cart.filter(item => item.id !== id);
+      updateCart();
+    }
+    
+    function updateCartQuantity(id, quantity) {
+      const item = cart.find(item => item.id === id);
+      if (item) {
+        item.quantity = quantity;
+        if (item.quantity <= 0) {
+          removeFromCart(id);
+        } else {
+          updateCart();
+        }
+      }
+    }
+    
+    function updateCart() {
+      // Update cart count
+      cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+      document.querySelector('.cart-count').textContent = cartCount;
+      
+      // Update cart total
+      cartTotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+      document.querySelector('.total-price').textContent = `$${cartTotal.toFixed(2)}`;
+      
+      // Update cart items
+      const cartItemsContainer = document.querySelector('.cart-items');
+      cartItemsContainer.innerHTML = '';
+      
+      if (cart.length === 0) {
+        cartItemsContainer.innerHTML = '<p style="text-align: center; color: var(--light-text);">Your cart is empty</p>';
+        return;
+      }
+      
+      cart.forEach(item => {
+        const cartItem = document.createElement('div');
+        cartItem.className = 'cart-item';
+        cartItem.innerHTML = `
+          <img src="${item.id === '1' ? 'tshirt1.jpg' : item.id === '2' ? 'hoodie1.jpg' : item.id === '3' ? 'cap1.jpg' : item.id === '4' ? 'tshirt2.jpg' : item.id === '5' ? 'jacket1.jpg' : 'beanie1.jpg'}" alt="${item.name}" class="cart-item-image">
+          <div class="cart-item-details">
+            <div class="cart-item-name">${item.name}</div>
+            <div class="cart-item-price">$${item.price.toFixed(2)}</div>
+            <div class="cart-item-quantity">
+              <button class="quantity-btn" onclick="updateCartQuantity('${item.id}', ${item.quantity - 1})">-</button>
+              <span>${item.quantity}</span>
+              <button class="quantity-btn" onclick="updateCartQuantity('${item.id}', ${item.quantity + 1})">+</button>
+              <button class="remove-item" onclick="removeFromCart('${item.id}')">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        `;
+        cartItemsContainer.appendChild(cartItem);
+      });
+    }
+    
+    function toggleCart() {
+      document.querySelector('.cart-sidebar').classList.toggle('active');
+      document.querySelector('.cart-overlay').classList.toggle('active');
+    }
   </script>
 </body>
 </html>
